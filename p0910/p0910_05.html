@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        div{margin: 50px auto; width: 600px; text-align: center;}
+        h2{margin-bottom: 30px; font-size: 40px;}
+    </style>
+</head>
+<body>
+    <div>
+        <h2>이벤트 페이지</h2>
+    
+        <img src="images/이벤트1.jpg" usemap="#ent">
+        <!-- 이미지 안 특정 위치에 링크걸기 -->
+        <map name="ent">
+            <!-- area:그림 안 링크 만들기 / rect:사각형 / coords: 위치값(좌표) -->
+            <area shape="rect" coords="45,480,160,340"
+            href="https://www.apple.com/kr/shop/buy-ipad" target="_blank">
+
+            <area shape="rect" coords="175,480,290,340"
+            href="https://www.apple.com/kr/shop/buy-watch" target="_blank">
+
+            <area shape="rect" coords="310,480,430,340"
+            href="https://www.apple.com/kr/airpods-pro/" target="_blank">
+
+            <area shape="rect" coords="450,480,560,340"
+            href="https://www.breville.com/ko-kr/shop/espresso" target="_blank">
+            <!-- 원형: circle -> 중앙점,반지름-->
+            <area shape="circle" coords="120,100,50"
+            href="https://www.samsung.com/sec/" target="_blank">
+            <!-- 다각형: poly, 위치값 4개필요 -->
+            <area shape="poly" coords="380,60,470,60,520,150,320,150"
+            href="https://www.naver.com" target="_blank">
+
+        </map>
+    </div>
+    
+</body>
+</html>

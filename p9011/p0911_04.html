@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{font-size: 30px; color: yellow;} /* 태그: 해당되는 태그 모두 지정*/
+        #f1{color: red;} /* id는 단일지정 : id 선택자 # */
+        .v{color: green;} /* class는 여러개 지정 가능: 클래스 선택자 .*/
+        
+        /* id>class>태그 순으로 적용된다 */
+        /* ul안 모든 코드에 속성을 부여하고 싶으면 ul태그를 사용한다 :부모 상속자 */
+    </style>
+</head>
+<body>
+    <ul>
+        <!-- id와 class 동시(여러개) 사용 가능. 하지만 스타일 적용은 id가 있으면 id값이 적용됨 -->
+        <li id="f1" class="v ff a">사과</li>
+        <li class="v">오이</li>
+        <li>배</li>
+        <li class="v">상추</li>
+        <li>수박</li>
+        <li class="v">감자</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!--  동영상 첨부 autoplay를 위해선 muted가 필요함. loop는 반복재생 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+        *{margin: 0; padding: 0;}
+        #title{width: 100%; height: 600px; overflow: hidden;
+            position: relative;}
+
+        #txt{position: absolute; left: 350px; top:250px; color: white;}
+        
+        h1{font-size: 70px;  }
+        h2{font-size: 30px;  
+            font-family: "Noto Sans KR", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;}
+        
+    </style>
+</head>
+<body>
+    <!--시맨틱 태그: 섹션 잡아주는것-> header, nav, section, article, aside, footer,address -->
+    <div id="title">
+        <video src="images/killer1.mp4" muted autoplay loop></video>
+        <div id="txt">
+            <h1>유부녀 킬러 (A Bona fide Killer)</h1>
+            <h2>이하이 (LEEHI) - Paper Flower MV</h2>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- box-sizing :border-box은 박스 사이즈에 자동으로 조절 하여 맞혀줌. 예전에는 일일히 계산해야 했음. -->
+<!-- box-sizing: content-box -->
+<!-- 박스 크기는 border+paddig+콘텐츠박스 -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        ul{width: 1000px; height: 40px;
+            list-style: none; border: 2px solid black;
+            margin: auto;}
+        li{float: left; box-sizing: border-box;
+            width: 200px; height: 40px; background: yellow;
+        text-align: center; line-height: 40px; font-size: 20px;
+        border: 5px solid black;}
+        .c1{background: green;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="c1">사과</li>
+        <li>복숭아</li>
+        <li>포도</li>
+        <li>참외</li>
+        <li class="c1">수박</li>
+    </ul>
+
+    
+</body>
+</html>

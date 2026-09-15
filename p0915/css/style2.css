@@ -1,0 +1,481 @@
+/* --------------------
+           기본 설정
+        -------------------- */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            color: #333;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+
+        /* --------------------
+           상단 이미지 영역
+        -------------------- */
+
+        #visual {
+            width: 100%;
+            height: 500px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        #visual img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        /* 이미지 위 어두운 효과 */
+
+        #visual::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* 이미지 위 글자 */
+
+        .visual_text {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            z-index: 2;
+
+            text-align: center;
+
+            color: white;
+
+            width: 100%;
+        }
+
+        .visual_text h1 {
+            font-size: 64px;
+            font-weight: 500;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 15px;
+        }
+
+        .visual_text p {
+            font-size: 18px;
+            letter-spacing: 3px;
+        }
+
+
+        /* --------------------
+           HEADER
+        -------------------- */
+
+        header {
+            width: 100%;
+            height: 80px;
+
+            border-bottom: 1px solid #eee;
+
+            background: white;
+        }
+
+        .header_inner {
+            width: 1200px;
+            height: 100%;
+
+            margin: 0 auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        /* 로고 */
+
+        .logo {
+            font-size: 27px;
+            font-weight: 700;
+
+            color: #304d3b;
+        }
+
+
+        /* 메뉴 */
+
+        nav ul {
+            display: flex;
+
+            gap: 45px;
+        }
+
+        nav li {
+            font-size: 15px;
+        }
+
+        nav li:hover {
+            color: #496b55;
+        }
+
+
+        /* 예약 버튼 */
+
+        .reservation {
+            padding: 10px 20px;
+
+            border: 1px solid #333;
+
+            font-size: 13px;
+        }
+
+
+        /* --------------------
+           CONTENT
+        -------------------- */
+
+        .container {
+            width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 70px 0 100px;
+        }
+
+
+        /* 경로 */
+
+        .breadcrumb {
+            font-size: 13px;
+
+            color: #999;
+
+            margin-bottom: 35px;
+        }
+
+        .breadcrumb span {
+            color: #333;
+        }
+
+
+        /* 제목 */
+
+        .title {
+            text-align: center;
+
+            margin-bottom: 50px;
+        }
+
+        .title h2 {
+            font-size: 42px;
+
+            font-weight: 500;
+
+            margin-bottom: 15px;
+        }
+
+        .title p {
+            color: #888;
+
+            font-size: 15px;
+        }
+
+
+        /* --------------------
+           검색 영역
+        -------------------- */
+
+        .search_box {
+            display: flex;
+
+            justify-content: center;
+
+            margin-bottom: 30px;
+        }
+
+        .search_box select {
+            width: 130px;
+
+            height: 45px;
+
+            border: 1px solid #ddd;
+
+            padding: 0 10px;
+        }
+
+        .search_box input {
+            width: 350px;
+
+            height: 45px;
+
+            border: 1px solid #ddd;
+
+            border-left: none;
+
+            padding: 0 15px;
+
+            font-size: 14px;
+        }
+
+        .search_box button {
+            width: 80px;
+
+            height: 45px;
+
+            border: none;
+
+            background: #333;
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+
+        /* --------------------
+           뉴스 테이블
+        -------------------- */
+
+        .news_table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            border-top: 2px solid #333;
+        }
+
+        .news_table th {
+            height: 60px;
+
+            background: #f8f8f8;
+
+            border-bottom: 1px solid #ddd;
+
+            font-size: 14px;
+        }
+
+        .news_table td {
+            height: 65px;
+
+            border-bottom: 1px solid #eee;
+
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+
+        /* 번호 */
+
+        .news_table th:first-child,
+        .news_table td:first-child {
+            width: 100px;
+        }
+
+
+        /* 제목 */
+
+        .news_table th:nth-child(2) {
+            width: auto;
+        }
+
+        .news_table td:nth-child(2) {
+            text-align: left;
+
+            padding-left: 30px;
+        }
+
+
+        /* 리조트 */
+
+        .news_table th:nth-child(3),
+        .news_table td:nth-child(3) {
+            width: 150px;
+        }
+
+
+        /* 마우스 올렸을 때 */
+
+        .news_table tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .news_table tbody tr:hover td:nth-child(2) {
+            text-decoration: underline;
+        }
+
+
+        /* --------------------
+           페이지 번호
+        -------------------- */
+
+        .pagination {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            margin-top: 40px;
+        }
+
+        .pagination a {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid #ddd;
+
+            font-size: 13px;
+        }
+
+        .pagination a.active {
+            background: #333;
+
+            color: white;
+
+            border-color: #333;
+        }
+
+
+        /* --------------------
+           FOOTER
+        -------------------- */
+
+        footer {
+            background: #333;
+
+            color: #aaa;
+
+            padding: 50px 0;
+        }
+
+        .footer_inner {
+            width: 1200px;
+
+            margin: 0 auto;
+        }
+
+        .footer_menu {
+            display: flex;
+
+            gap: 25px;
+
+            margin-bottom: 25px;
+        }
+
+        .footer_menu a {
+            color: white;
+
+            font-size: 13px;
+        }
+
+        .footer_info {
+            line-height: 1.8;
+
+            font-size: 12px;
+        }
+
+        .copyright {
+            margin-top: 20px;
+
+            font-size: 11px;
+
+            color: #777;
+        }
+
+
+        /* --------------------
+           반응형
+        -------------------- */
+
+        @media(max-width: 1200px) {
+
+            .header_inner,
+            .container,
+            .footer_inner {
+                width: calc(100% - 40px);
+            }
+
+            nav ul {
+                gap: 20px;
+            }
+
+        }
+
+
+        @media(max-width: 768px) {
+
+            #visual {
+                height: 350px;
+            }
+
+            .visual_text h1 {
+                font-size: 40px;
+            }
+
+            .header_inner {
+                width: calc(100% - 30px);
+            }
+
+            nav {
+                display: none;
+            }
+
+            .container {
+                width: calc(100% - 30px);
+
+                padding-top: 50px;
+            }
+
+            .title h2 {
+                font-size: 32px;
+            }
+
+            .search_box input {
+                width: 200px;
+            }
+
+            .news_table th:first-child,
+            .news_table td:first-child {
+                width: 60px;
+            }
+
+            .news_table th:nth-child(3),
+            .news_table td:nth-child(3) {
+                width: 80px;
+            }
+
+        }

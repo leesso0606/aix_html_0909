@@ -1,0 +1,909 @@
+<!-- 게시판 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>뉴스 | 포레스트</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+            color: #333;
+            background: #fff;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        /* =========================
+           상단 헤더
+        ========================= */
+
+        header {
+            width: 100%;
+            height: 80px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+        }
+
+        .header-inner {
+            width: 1200px;
+            max-width: calc(100% - 40px);
+            height: 100%;
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .logo span {
+            font-weight: 400;
+            color: #777;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+        }
+
+        nav a {
+            font-size: 15px;
+            color: #444;
+        }
+
+        nav a:hover {
+            color: #8b7654;
+        }
+
+
+        /* =========================
+           상단 배너
+           이미지 직접 삽입
+        ========================= */
+
+        .visual {
+            width: 100%;
+            height: 330px;
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: white;
+        }
+
+        /* SVG 배경 이미지 */
+        .visual-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* 이미지 위 어두운 효과 */
+        .visual::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 2;
+        }
+
+        .visual-title {
+            position: relative;
+            z-index: 3;
+
+            text-align: center;
+        }
+
+        .visual-title h1 {
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .visual-title p {
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           콘텐츠
+        ========================= */
+
+        .container {
+            width: 1200px;
+            max-width: calc(100% - 40px);
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 80px 0 100px;
+        }
+
+        .content-title {
+            margin-bottom: 45px;
+        }
+
+        .content-title h2 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .content-title p {
+            color: #888;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           검색
+        ========================= */
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-box select {
+            width: 130px;
+            height: 45px;
+
+            border: 1px solid #ddd;
+            padding: 0 10px;
+
+            font-size: 14px;
+        }
+
+        .search-box input {
+            width: 320px;
+            height: 45px;
+
+            border: 1px solid #ddd;
+            border-left: none;
+
+            padding: 0 15px;
+
+            font-size: 14px;
+        }
+
+        .search-box button {
+            width: 80px;
+            height: 45px;
+
+            border: none;
+            background: #333;
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .search-box button:hover {
+            background: #555;
+        }
+
+
+        /* =========================
+           게시판
+        ========================= */
+
+        .board {
+            width: 100%;
+            border-top: 2px solid #333;
+        }
+
+        .board-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 150px;
+
+            min-height: 65px;
+
+            border-bottom: 1px solid #eee;
+
+            align-items: center;
+            text-align: center;
+
+            font-size: 14px;
+        }
+
+        .board-head {
+            background: #fafafa;
+            font-weight: 600;
+        }
+
+        .board-title {
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .board-title a:hover {
+            color: #8b7654;
+        }
+
+        .board-row:hover:not(.board-head) {
+            background: #fcfcfc;
+        }
+
+
+        /* =========================
+           페이지
+        ========================= */
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 45px;
+        }
+
+        .pagination a {
+            width: 35px;
+            height: 35px;
+
+            border: 1px solid #ddd;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 13px;
+        }
+
+        .pagination a:hover,
+        .pagination .active {
+            background: #333;
+            color: white;
+            border-color: #333;
+        }
+
+
+        /* =========================
+           글쓰기 버튼
+        ========================= */
+
+        .write-area {
+            display: flex;
+            justify-content: flex-end;
+
+            margin-top: 25px;
+        }
+
+        .write-btn {
+            display: inline-flex;
+
+            width: 110px;
+            height: 45px;
+
+            justify-content: center;
+            align-items: center;
+
+            background: #333;
+            color: white;
+
+            font-size: 14px;
+        }
+
+        .write-btn:hover {
+            background: #555;
+        }
+
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            background: #333;
+            color: #aaa;
+
+            padding: 45px 0;
+        }
+
+        .footer-inner {
+            width: 1200px;
+            max-width: calc(100% - 40px);
+            margin: 0 auto;
+        }
+
+        .footer-menu {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .footer-menu a {
+            font-size: 13px;
+            color: #ddd;
+        }
+
+        .footer-info {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           모바일
+        ========================= */
+
+        @media (max-width: 768px) {
+
+            header {
+                height: 65px;
+            }
+
+            .header-inner {
+                max-width: calc(100% - 30px);
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .visual {
+                height: 230px;
+            }
+
+            .visual-title h1 {
+                font-size: 34px;
+            }
+
+            .content {
+                padding: 50px 0 70px;
+            }
+
+            .content-title h2 {
+                font-size: 26px;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-box select {
+                width: 90px;
+            }
+
+            .search-box input {
+                width: calc(100% - 170px);
+            }
+
+            .search-box button {
+                width: 80px;
+            }
+
+            .board-row {
+                grid-template-columns: 60px 1fr 80px;
+                min-height: 55px;
+                font-size: 12px;
+            }
+
+            .board-title {
+                padding: 0 10px;
+
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .pagination {
+                gap: 4px;
+            }
+
+            .pagination a {
+                width: 30px;
+                height: 30px;
+            }
+
+            .footer-menu {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         Header
+    ========================= -->
+
+    <header>
+
+        <div class="header-inner">
+
+            <div class="logo">
+                FOREST <span>RESOM</span>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#">소개</a></li>
+                    <li><a href="#">뉴스</a></li>
+                    <li><a href="#">객실</a></li>
+                    <li><a href="#">스파</a></li>
+                    <li><a href="#">부대시설</a></li>
+                    <li><a href="#">예약</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         상단 배너
+         이미지가 HTML 안에 직접 들어있음
+    ========================= -->
+
+    <section class="visual">
+
+        <!-- SVG 이미지 직접 삽입 -->
+        <svg
+            class="visual-image"
+            viewBox="0 0 1600 500"
+            preserveAspectRatio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg">
+
+            <!-- 하늘 -->
+            <defs>
+
+                <linearGradient
+                    id="sky"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#b9c9c1"/>
+
+                    <stop
+                        offset="55%"
+                        stop-color="#d7d5c6"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#9b9d82"/>
+
+                </linearGradient>
+
+                <linearGradient
+                    id="mountain"
+                    x1="0"
+                    y1="0"
+                    x2="0"
+                    y2="1">
+
+                    <stop
+                        offset="0%"
+                        stop-color="#65705e"/>
+
+                    <stop
+                        offset="100%"
+                        stop-color="#303c32"/>
+
+                </linearGradient>
+
+            </defs>
+
+
+            <!-- 배경 하늘 -->
+            <rect
+                width="1600"
+                height="500"
+                fill="url(#sky)"/>
+
+
+            <!-- 먼 산 -->
+            <path
+                d="
+                M0 310
+                L130 230
+                L240 280
+                L360 180
+                L480 270
+                L620 160
+                L760 250
+                L900 170
+                L1040 270
+                L1190 190
+                L1330 260
+                L1470 175
+                L1600 260
+                L1600 500
+                L0 500
+                Z"
+                fill="#798474"/>
+
+
+            <!-- 가까운 산 -->
+            <path
+                d="
+                M0 390
+                L180 250
+                L300 340
+                L460 220
+                L620 350
+                L780 230
+                L950 350
+                L1110 240
+                L1280 350
+                L1450 230
+                L1600 350
+                L1600 500
+                L0 500
+                Z"
+                fill="url(#mountain)"/>
+
+
+            <!-- 나무들 -->
+            <g fill="#26352c">
+
+                <path d="M80 500 L130 310 L180 500 Z"/>
+                <path d="M170 500 L220 280 L270 500 Z"/>
+                <path d="M280 500 L330 320 L380 500 Z"/>
+                <path d="M1180 500 L1230 300 L1280 500 Z"/>
+                <path d="M1300 500 L1350 260 L1400 500 Z"/>
+                <path d="M1430 500 L1480 310 L1530 500 Z"/>
+
+            </g>
+
+
+            <!-- 숲 바닥 -->
+            <rect
+                x="0"
+                y="410"
+                width="1600"
+                height="90"
+                fill="#334238"/>
+
+        </svg>
+
+
+        <div class="visual-title">
+
+            <h1>NEWS</h1>
+
+            <p>
+                포레스트 리솜의 새로운 소식을 만나보세요.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         게시판
+    ========================= -->
+
+    <main class="content">
+
+        <div class="container">
+
+            <div class="content-title">
+
+                <h2>뉴스</h2>
+
+                <p>
+                    포레스트 리솜의 다양한 소식을 알려드립니다.
+                </p>
+
+            </div>
+
+
+            <!-- 검색 -->
+
+            <div class="search-box">
+
+                <select>
+                    <option>제목</option>
+                    <option>내용</option>
+                </select>
+
+                <input
+                    type="text"
+                    placeholder="검색어를 입력해주세요."
+                >
+
+                <button type="button">
+                    검색
+                </button>
+
+            </div>
+
+
+            <!-- 게시판 -->
+
+            <div class="board">
+
+                <!-- 제목 -->
+
+                <div class="board-row board-head">
+
+                    <div>번호</div>
+
+                    <div>제목</div>
+
+                    <div>리조트</div>
+
+                </div>
+
+
+                <!-- 게시글 -->
+
+                <div class="board-row">
+
+                    <div>16</div>
+
+                    <div class="board-title">
+                        <a href="p0916_10.html">
+                            조식 메뉴 개편 및 이용요금 변경 안내
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>15</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            유아용 웨건 대여 서비스 안내
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>14</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            리솜 프리미엄 LA 갈비 세트 출시
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>13</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            2025 사진공모전 수상작 발표
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>12</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            사우나 및 스파 시설 휴장 안내
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>11</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            리솜리조트 CCM 인증 획득 안내
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>10</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            해브나인 스파 이용 안내
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>9</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            제1회 시그니처 메뉴 경진대회 개최
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>8</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            2025 사진공모전 안내
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+
+                <div class="board-row">
+
+                    <div>7</div>
+
+                    <div class="board-title">
+                        <a href="#">
+                            어메니티 리뉴얼 안내
+                        </a>
+                    </div>
+
+                    <div>포레스트</div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 페이지 -->
+
+            <div class="pagination">
+
+                <a href="#">&lt;</a>
+
+                <a href="#" class="active">1</a>
+
+                <a href="#">2</a>
+
+                <a href="#">3</a>
+
+                <a href="#">4</a>
+
+                <a href="#">5</a>
+
+                <a href="#">&gt;</a>
+
+            </div>
+
+
+            <!-- 글쓰기 -->
+
+            <div class="write-area">
+
+                <a href="p0916_11.html" class="write-btn">
+                    글쓰기
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         Footer
+    ========================= -->
+
+    <footer>
+
+        <div class="footer-inner">
+
+            <div class="footer-menu">
+
+                <a href="#">회사소개</a>
+                <a href="#">오시는길</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용약관</a>
+
+            </div>
+
+
+            <div class="footer-info">
+
+                포레스트 리솜<br>
+
+                충청북도 제천시 백운면 금봉로 365<br>
+
+                대표번호 : 043-649-6000<br>
+
+                COPYRIGHT © HOBAN HOTEL & RESORT.
+                ALL RIGHTS RESERVED.
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

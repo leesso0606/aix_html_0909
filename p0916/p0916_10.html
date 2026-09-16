@@ -1,0 +1,591 @@
+<!-- 조식 메뉴 개편 및 이용요금 변경 안내 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>포레스트 리솜 뉴스</title>
+
+    <style>
+
+        /* =========================
+           기본 설정
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+            color: #333;
+            background: #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+        header {
+            width: 100%;
+            height: 80px;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+        }
+
+        .header_inner {
+            width: 1200px;
+            height: 80px;
+            margin: 0 auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .logo span {
+            font-weight: 400;
+        }
+
+
+        /* =========================
+           NAV
+        ========================= */
+        nav ul {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav li {
+            font-size: 15px;
+            color: #333;
+        }
+
+        nav li:hover {
+            color: #777;
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+        main {
+            width: 100%;
+        }
+
+
+        /* =========================
+           상단 배너
+        ========================= */
+        .sub_visual {
+            width: 100%;
+            height: 300px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.2),
+                    rgba(0,0,0,0.2)
+                ),
+                url("https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1920&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sub_visual h1 {
+            color: white;
+            font-size: 42px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           CONTENT
+        ========================= */
+        .content {
+            width: 1200px;
+            margin: 0 auto;
+            padding: 70px 0 100px;
+        }
+
+
+        /* breadcrumb */
+        .breadcrumb {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 45px;
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+            color: #bbb;
+        }
+
+
+        /* 페이지 제목 */
+        .page_title {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 35px;
+        }
+
+
+        /* =========================
+           게시글
+        ========================= */
+        .board_view {
+            width: 100%;
+            border-top: 2px solid #333;
+        }
+
+        .board_title {
+            padding: 25px 20px;
+
+            border-bottom: 1px solid #ddd;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .board_title h2 {
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .board_date {
+            font-size: 13px;
+            color: #999;
+        }
+
+
+        /* =========================
+           본문
+        ========================= */
+        .board_content {
+            min-height: 500px;
+            padding: 60px 40px;
+
+            border-bottom: 1px solid #ddd;
+
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .board_content p {
+            margin-bottom: 25px;
+        }
+
+        .board_content img {
+            display: block;
+
+            max-width: 100%;
+            width: 800px;
+
+            height: auto;
+
+            margin: 30px auto;
+        }
+
+
+        /* =========================
+           이전글 / 다음글
+        ========================= */
+        .prev_next {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .prev_next div {
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        .prev_next div:last-child {
+            border-bottom: 0;
+        }
+
+        .prev_next .label {
+            width: 100px;
+
+            text-align: center;
+
+            font-size: 13px;
+            color: #777;
+        }
+
+        .prev_next .subject {
+            font-size: 14px;
+            color: #555;
+        }
+
+
+        /* =========================
+           목록 버튼
+        ========================= */
+        .btn_area {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .btn_list {
+            display: inline-block;
+
+            width: 140px;
+            height: 48px;
+
+            line-height: 48px;
+
+            background: #333;
+            color: #fff;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .btn_list:hover {
+            background: #555;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+        footer {
+            width: 100%;
+
+            padding: 45px 0;
+
+            background: #333;
+            color: #aaa;
+        }
+
+        .footer_inner {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer_menu {
+            display: flex;
+            gap: 25px;
+
+            margin-bottom: 25px;
+        }
+
+        .footer_menu a {
+            font-size: 13px;
+            color: #ddd;
+        }
+
+        .footer_info {
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .copyright {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #777;
+        }
+
+
+        /* =========================
+           모바일
+        ========================= */
+        @media (max-width: 768px) {
+
+            .header_inner {
+                width: 90%;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav li {
+                font-size: 12px;
+            }
+
+            .sub_visual {
+                height: 220px;
+            }
+
+            .sub_visual h1 {
+                font-size: 32px;
+            }
+
+            .content {
+                width: 90%;
+                padding: 45px 0 70px;
+            }
+
+            .page_title {
+                font-size: 27px;
+            }
+
+            .board_title {
+                display: block;
+            }
+
+            .board_title h2 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .board_content {
+                padding: 40px 15px;
+            }
+
+            .board_content img {
+                width: 100%;
+            }
+
+            .footer_inner {
+                width: 90%;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+<header>
+
+    <div class="header_inner">
+
+        <a href="#" class="logo">
+            RESOM <span>FOREST</span>
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="#">포레스트</a></li>
+                <li><a href="#">스파</a></li>
+                <li><a href="#">객실</a></li>
+                <li><a href="#">특별한 경험</a></li>
+                <li><a href="#">부대시설</a></li>
+                <li><a href="#">예약</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+<main>
+
+
+    <!-- 상단 이미지 -->
+    <section class="sub_visual">
+
+        <h1>NEWS</h1>
+
+    </section>
+
+
+    <!-- CONTENT -->
+    <section class="content">
+
+
+        <!-- 경로 -->
+        <div class="breadcrumb">
+
+            HOME
+            <span>›</span>
+            포레스트
+            <span>›</span>
+            뉴스
+
+        </div>
+
+
+        <!-- 제목 -->
+        <h2 class="page_title">
+            뉴스
+        </h2>
+
+
+        <!-- 게시글 -->
+        <div class="board_view">
+
+
+            <!-- 게시글 제목 -->
+            <div class="board_title">
+
+                <h2>
+                    조식 메뉴 개편 및 이용요금 변경 안내
+                </h2>
+
+                <div class="board_date">
+                    2026.09.08
+                </div>
+
+            </div>
+
+
+            <!-- 게시글 본문 -->
+            <div class="board_content">
+
+                <p>
+                    안녕하세요.<br>
+                    포레스트 리솜입니다.
+                </p>
+
+                <p>
+                    더욱 만족스러운 서비스를 제공하기 위해
+                    조식 메뉴가 새롭게 개편됩니다.
+                </p>
+
+
+                <!-- 본문 이미지 -->
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80" alt="조식 메뉴 안내">
+
+
+                <p>
+                    새로운 메뉴와 함께 보다 편안하고 즐거운
+                    아침 식사를 이용하시기 바랍니다.
+                </p>
+
+                <p>
+                    이용요금 및 자세한 사항은 아래 내용을
+                    확인해 주세요.
+                </p>
+
+
+                <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80" alt="조식 이용요금">
+
+
+                <p>
+                    감사합니다.
+                </p>
+
+            </div>
+
+
+            <!-- 이전글 / 다음글 -->
+            <div class="prev_next">
+
+                <div>
+                    <div class="label">
+                        이전글
+                    </div>
+
+                    <div class="subject">
+                        이전 게시글 제목입니다.
+                    </div>
+                </div>
+
+
+                <div>
+                    <div class="label">
+                        다음글
+                    </div>
+
+                    <div class="subject">
+                        다음 게시글 제목입니다.
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- 목록 버튼 -->
+        <div class="btn_area">
+
+            <a href="news_list.html" class="btn_list">
+                목록
+            </a>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+
+    <div class="footer_inner">
+
+        <div class="footer_menu">
+
+            <a href="#">회사소개</a>
+            <a href="#">오시는 길</a>
+            <a href="#">개인정보처리방침</a>
+            <a href="#">이용약관</a>
+            <a href="#">이메일무단수집거부</a>
+
+        </div>
+
+
+        <div class="footer_info">
+
+            포레스트 리솜 충청북도 제천시 백운면 금봉로 365<br>
+
+            대표번호 : 043-649-6000
+            &nbsp;&nbsp;
+            예약문의 : 1600-0060
+            &nbsp;&nbsp;
+            단체문의 : 02-6177-5999
+
+        </div>
+
+
+        <div class="copyright">
+
+            COPYRIGHT © HOBAN HOTEL & RESORT.
+            ALL RIGHTS RESERVED.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,1898 @@
+<!-- 메인페이지 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Forest Resort Main</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        "Noto Sans KR",
+        "Malgun Gothic",
+        sans-serif;
+
+    color: #333;
+    background: #fff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+img,
+svg {
+    display: block;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 80px;
+
+    z-index: 1000;
+
+    color: white;
+
+    transition: 0.3s;
+}
+
+header.scrolled {
+    background: rgba(255,255,255,0.97);
+    color: #333;
+
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+.header-inner {
+    width: 92%;
+    max-width: 1400px;
+
+    height: 100%;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* LOGO */
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.logo small {
+    display: block;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+    letter-spacing: 3px;
+
+    margin-top: 3px;
+}
+
+
+/* NAV */
+
+nav {
+    display: flex;
+    gap: 35px;
+
+    font-size: 14px;
+}
+
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -8px;
+
+    width: 0;
+    height: 1px;
+
+    background: currentColor;
+
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    left: 0;
+    width: 100%;
+}
+
+
+/* RIGHT */
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    font-size: 13px;
+}
+
+.reserve {
+    padding: 11px 20px;
+
+    border: 1px solid currentColor;
+
+    border-radius: 30px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    position: relative;
+
+    height: 100vh;
+    min-height: 650px;
+
+    overflow: hidden;
+
+    color: white;
+}
+
+
+/* 직접 만든 SVG 이미지 */
+
+.hero-image {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    left: 0;
+    top: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.15),
+            rgba(0,0,0,0.05) 40%,
+            rgba(0,0,0,0.55)
+        );
+}
+
+.hero-image svg {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* HERO TEXT */
+
+.hero-text {
+    position: absolute;
+
+    left: 8%;
+    bottom: 15%;
+
+    z-index: 2;
+}
+
+.hero-text .eng {
+    font-size: 14px;
+    letter-spacing: 5px;
+
+    margin-bottom: 20px;
+}
+
+.hero-text h1 {
+    font-family: Georgia, serif;
+
+    font-size: clamp(45px, 7vw, 90px);
+
+    font-weight: 400;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.hero-button {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 13px 28px;
+
+    border: 1px solid white;
+
+    border-radius: 30px;
+
+    transition: 0.3s;
+}
+
+.hero-button:hover {
+    background: white;
+    color: #333;
+}
+
+
+/* SCROLL */
+
+.scroll {
+    position: absolute;
+
+    bottom: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    opacity: 0.8;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+.section {
+    padding: 120px 5%;
+}
+
+.section-inner {
+    max-width: 1300px;
+    margin: auto;
+}
+
+.section-title {
+    text-align: center;
+
+    margin-bottom: 60px;
+}
+
+.section-title span {
+    display: block;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    color: #71836f;
+
+    margin-bottom: 12px;
+}
+
+.section-title h2 {
+    font-family: Georgia, serif;
+
+    font-size: 40px;
+
+    font-weight: 400;
+
+    color: #333;
+}
+
+.section-title p {
+    margin-top: 15px;
+
+    color: #777;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    background: #f5f3ee;
+
+    text-align: center;
+}
+
+.intro h2 {
+    font-family: Georgia, serif;
+
+    font-size: 45px;
+
+    font-weight: 400;
+
+    color: #52624f;
+}
+
+.intro p {
+    max-width: 700px;
+
+    margin: 25px auto 0;
+
+    line-height: 2;
+
+    font-size: 15px;
+
+    color: #666;
+}
+
+
+/* =========================
+   CONTENT CARDS
+========================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 35px;
+}
+
+.card {
+    position: relative;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    background: #ddd;
+}
+
+.card-image {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    transition: 0.7s;
+}
+
+.card:hover .card-image {
+    transform: scale(1.06);
+}
+
+.card-image svg {
+    width: 100%;
+    height: 100%;
+}
+
+.card-overlay {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+
+    padding: 45px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,0.65)
+        );
+}
+
+.card-overlay span {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+}
+
+.card-overlay h3 {
+    font-family: Georgia, serif;
+
+    font-size: 32px;
+
+    font-weight: 400;
+
+    margin: 12px 0;
+}
+
+.card-overlay p {
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    max-width: 500px;
+}
+
+
+/* =========================
+   PROGRAM
+========================= */
+
+.program {
+    background: #faf9f5;
+}
+
+.program-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.program-item {
+    background: white;
+
+    border: 1px solid #eee;
+
+    padding: 45px 35px;
+
+    text-align: center;
+
+    transition: 0.3s;
+}
+
+.program-item:hover {
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.08);
+}
+
+.program-icon {
+    font-size: 42px;
+
+    margin-bottom: 20px;
+}
+
+.program-item h3 {
+    font-size: 20px;
+
+    font-weight: 500;
+
+    margin-bottom: 15px;
+}
+
+.program-item p {
+    font-size: 13px;
+
+    line-height: 1.8;
+
+    color: #777;
+}
+
+
+/* =========================
+   EVENT
+========================= */
+
+.event {
+    background: #fff;
+}
+
+.event-box {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    min-height: 420px;
+}
+
+.event-image {
+    overflow: hidden;
+}
+
+.event-image svg {
+    width: 100%;
+    height: 100%;
+}
+
+.event-content {
+    background: #ebe8de;
+
+    padding: 70px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.event-content span {
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    color: #68735f;
+}
+
+.event-content h3 {
+    font-family: Georgia, serif;
+
+    font-size: 38px;
+
+    font-weight: 400;
+
+    margin: 18px 0;
+}
+
+.event-content p {
+    line-height: 1.9;
+
+    font-size: 14px;
+
+    color: #666;
+}
+
+.more {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    width: fit-content;
+
+    padding-bottom: 7px;
+
+    border-bottom: 1px solid #333;
+}
+
+
+/* =========================
+   NEWS
+========================= */
+
+.news {
+    background: #f6f6f4;
+}
+
+.news-list {
+    border-top: 1px solid #ccc;
+}
+
+.news-item {
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 25px 10px;
+
+    border-bottom: 1px solid #ddd;
+
+    font-size: 14px;
+}
+
+.news-item span:last-child {
+    color: #999;
+}
+
+
+/* =========================
+   TOUR
+========================= */
+
+.tour-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.tour {
+    position: relative;
+
+    height: 350px;
+
+    overflow: hidden;
+}
+
+.tour svg {
+    width: 100%;
+    height: 100%;
+
+    transition: 0.6s;
+}
+
+.tour:hover svg {
+    transform: scale(1.08);
+}
+
+.tour-name {
+    position: absolute;
+
+    left: 25px;
+    bottom: 25px;
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: 27px;
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,0.5);
+}
+
+
+/* =========================
+   MEMBERSHIP
+========================= */
+
+.membership {
+    position: relative;
+
+    min-height: 450px;
+
+    overflow: hidden;
+
+    color: white;
+
+    text-align: center;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.membership-bg {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            rgba(30,45,32,0.72),
+            rgba(30,45,32,0.72)
+        );
+}
+
+.membership-bg svg {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+}
+
+.membership-content {
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 750px;
+
+    padding: 30px;
+}
+
+.membership-content span {
+    font-size: 12px;
+
+    letter-spacing: 4px;
+}
+
+.membership-content h2 {
+    font-family: Georgia, serif;
+
+    font-size: 45px;
+
+    font-weight: 400;
+
+    margin: 18px 0;
+}
+
+.membership-content p {
+    line-height: 2;
+
+    font-size: 14px;
+}
+
+.membership-btn {
+    display: inline-block;
+
+    margin-top: 30px;
+
+    padding: 13px 30px;
+
+    border: 1px solid white;
+
+    border-radius: 30px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    background: #252925;
+
+    color: #aaa;
+
+    padding: 60px 5%;
+}
+
+.footer-inner {
+    max-width: 1300px;
+
+    margin: auto;
+}
+
+.footer-logo {
+    font-family: Georgia, serif;
+
+    font-size: 25px;
+
+    color: white;
+
+    margin-bottom: 25px;
+}
+
+.footer-info {
+    font-size: 12px;
+
+    line-height: 2;
+
+    margin-bottom: 30px;
+}
+
+.copyright {
+    font-size: 11px;
+
+    color: #666;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width: 900px) {
+
+    nav {
+        display: none;
+    }
+
+    .header-right {
+        font-size: 11px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .program-list {
+        grid-template-columns: 1fr;
+    }
+
+    .event-box {
+        grid-template-columns: 1fr;
+    }
+
+    .event-image {
+        height: 350px;
+    }
+
+    .tour-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section {
+        padding: 80px 5%;
+    }
+
+    .hero-text {
+        left: 7%;
+    }
+
+    .hero-text h1 {
+        font-size: 55px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header id="header">
+
+    <div class="header-inner">
+
+        <a href="#" class="logo">
+            FOREST RESOM
+            <small>NATURE & WELLNESS RESORT</small>
+        </a>
+
+
+        <nav>
+
+            <a href="#about">포레스트</a>
+
+            <a href="#rooms">객실</a>
+
+            <a href="#spa">스파</a>
+
+            <a href="#program">특별한 경험</a>
+
+            <a href="#event">이벤트</a>
+
+            <a href="#news">뉴스</a>
+
+        </nav>
+
+
+        <div class="header-right">
+
+            <a href="#">로그인</a>
+
+            <a href="p0916_13.html">회원가입</a>
+
+            <a href="#" class="reserve">
+                예약하기
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+
+    <div class="hero-image">
+
+        <!-- 직접 삽입한 SVG 이미지 -->
+
+        <svg viewBox="0 0 1600 900"
+             preserveAspectRatio="xMidYMid slice"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <!-- 하늘 -->
+
+            <defs>
+
+                <linearGradient id="sky"
+                    x1="0" y1="0"
+                    x2="0" y2="1">
+
+                    <stop offset="0%"
+                          stop-color="#8da7ad"/>
+
+                    <stop offset="55%"
+                          stop-color="#c5cbb9"/>
+
+                    <stop offset="100%"
+                          stop-color="#6f806b"/>
+
+                </linearGradient>
+
+                <linearGradient id="mountain"
+                    x1="0" y1="0"
+                    x2="0" y2="1">
+
+                    <stop offset="0%"
+                          stop-color="#647b69"/>
+
+                    <stop offset="100%"
+                          stop-color="#263b2c"/>
+
+                </linearGradient>
+
+            </defs>
+
+
+            <rect
+                width="1600"
+                height="900"
+                fill="url(#sky)"
+            />
+
+
+            <!-- 먼 산 -->
+
+            <path
+                d="M0 470
+                   L180 300
+                   L320 430
+                   L520 220
+                   L720 430
+                   L900 280
+                   L1100 450
+                   L1280 250
+                   L1600 460
+                   V900
+                   H0Z"
+                fill="#72856f"
+            />
+
+
+            <!-- 앞쪽 산 -->
+
+            <path
+                d="M0 580
+                   L200 400
+                   L380 520
+                   L560 350
+                   L780 550
+                   L1000 360
+                   L1200 540
+                   L1400 390
+                   L1600 560
+                   V900
+                   H0Z"
+                fill="url(#mountain)"
+            />
+
+
+            <!-- 숲 -->
+
+            <g fill="#20372a">
+
+                <path d="M50 900 L120 520 L190 900Z"/>
+                <path d="M160 900 L250 470 L340 900Z"/>
+                <path d="M320 900 L400 500 L480 900Z"/>
+                <path d="M470 900 L560 430 L650 900Z"/>
+                <path d="M630 900 L720 490 L810 900Z"/>
+                <path d="M820 900 L900 420 L980 900Z"/>
+                <path d="M980 900 L1080 470 L1180 900Z"/>
+                <path d="M1170 900 L1260 410 L1350 900Z"/>
+                <path d="M1320 900 L1430 460 L1540 900Z"/>
+
+            </g>
+
+
+            <!-- 안개 -->
+
+            <ellipse
+                cx="800"
+                cy="570"
+                rx="600"
+                ry="100"
+                fill="#e7e7d9"
+                opacity="0.25"
+            />
+
+        </svg>
+
+    </div>
+
+
+    <div class="hero-text">
+
+        <div class="eng">
+            FOREST RESOM
+        </div>
+
+        <h1>
+            Stay in Nature
+        </h1>
+
+        <p>
+            숲과 함께 쉬어가는 가장 특별한 하루
+        </p>
+
+        <a href="#rooms"
+           class="hero-button">
+            객실 둘러보기
+        </a>
+
+    </div>
+
+
+    <div class="scroll">
+        SCROLL DOWN ↓
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="section intro"
+         id="about">
+
+    <div class="section-inner">
+
+        <h2>
+            Nature, Rest & Healing
+        </h2>
+
+        <p>
+            깊은 숲속에서 만나는 자연의 휴식.<br>
+            일상의 소음에서 벗어나 자연과 가까워지는 시간,
+            포레스트 리조트에서 특별한 휴식을 경험해보세요.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<section class="section"
+         id="rooms">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <span>FOREST RESOM</span>
+
+            <h2>
+                특별한 자연 속 경험
+            </h2>
+
+            <p>
+                자연과 함께하는 포레스트 리솜의 다양한 콘텐츠
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+
+            <!-- CARD 1 -->
+
+            <article class="card">
+
+                <div class="card-image">
+
+                    <svg viewBox="0 0 800 600"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <defs>
+
+                            <linearGradient id="room1"
+                                x1="0" y1="0"
+                                x2="1" y2="1">
+
+                                <stop offset="0%"
+                                      stop-color="#bdc8bb"/>
+
+                                <stop offset="100%"
+                                      stop-color="#405444"/>
+
+                            </linearGradient>
+
+                        </defs>
+
+                        <rect
+                            width="800"
+                            height="600"
+                            fill="url(#room1)"
+                        />
+
+                        <!-- 건물 -->
+
+                        <rect
+                            x="180"
+                            y="230"
+                            width="440"
+                            height="260"
+                            fill="#d9d1bd"
+                        />
+
+                        <polygon
+                            points="150,240 400,100 650,240"
+                            fill="#6a7564"
+                        />
+
+                        <rect
+                            x="230"
+                            y="300"
+                            width="120"
+                            height="150"
+                            fill="#789087"
+                        />
+
+                        <rect
+                            x="380"
+                            y="300"
+                            width="120"
+                            height="150"
+                            fill="#789087"
+                        />
+
+                        <!-- 나무 -->
+
+                        <g fill="#294331">
+
+                            <path d="M30 600 L110 250 L190 600Z"/>
+                            <path d="M600 600 L680 230 L760 600Z"/>
+
+                        </g>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="card-overlay">
+
+                    <span>ROOM</span>
+
+                    <h3>
+                        Forest Rooms
+                    </h3>
+
+                    <p>
+                        숲을 바라보며 편안한 휴식을 즐기는
+                        자연 친화적인 객실
+                    </p>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- CARD 2 -->
+
+            <article class="card">
+
+                <div class="card-image">
+
+                    <svg viewBox="0 0 800 600"
+                         xmlns="http://www.w3.org/2000/svg">
+
+                        <defs>
+
+                            <linearGradient id="spa"
+                                x1="0" y1="0"
+                                x2="0" y2="1">
+
+                                <stop offset="0%"
+                                      stop-color="#d6e0dc"/>
+
+                                <stop offset="100%"
+                                      stop-color="#59756b"/>
+
+                            </linearGradient>
+
+                        </defs>
+
+                        <rect
+                            width="800"
+                            height="600"
+                            fill="url(#spa)"
+                        />
+
+                        <!-- 물 -->
+
+                        <ellipse
+                            cx="400"
+                            cy="430"
+                            rx="300"
+                            ry="100"
+                            fill="#a9c7c5"
+                        />
+
+                        <ellipse
+                            cx="400"
+                            cy="430"
+                            rx="230"
+                            ry="70"
+                            fill="#d7e8e5"
+                        />
+
+                        <!-- 바위 -->
+
+                        <g fill="#66776e">
+
+                            <ellipse
+                                cx="120"
+                                cy="470"
+                                rx="90"
+                                ry="45"/>
+
+                            <ellipse
+                                cx="680"
+                                cy="470"
+                                rx="90"
+                                ry="45"/>
+
+                        </g>
+
+                        <!-- 나무 -->
+
+                        <g fill="#355440">
+
+                            <path d="M0 600 L80 230 L160 600Z"/>
+                            <path d="M640 600 L720 200 L800 600Z"/>
+
+                        </g>
+
+                    </svg>
+
+                </div>
+
+
+                <div class="card-overlay">
+
+                    <span>SPA & SAUNA</span>
+
+                    <h3>
+                        Forest Spa
+                    </h3>
+
+                    <p>
+                        자연 속에서 즐기는 편안한 스파와
+                        힐링 프로그램
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PROGRAM
+========================= -->
+
+<section class="section program"
+         id="program">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <span>EXPERIENCE</span>
+
+            <h2>
+                Forest Program
+            </h2>
+
+            <p>
+                리조트에서 즐기는 다양한 자연 체험
+            </p>
+
+        </div>
+
+
+        <div class="program-list">
+
+
+            <div class="program-item">
+
+                <div class="program-icon">
+                    🌲
+                </div>
+
+                <h3>
+                    숲속 트레킹
+                </h3>
+
+                <p>
+                    맑은 공기를 마시며
+                    숲길을 천천히 걸어보세요.
+                </p>
+
+            </div>
+
+
+            <div class="program-item">
+
+                <div class="program-icon">
+                    ☕
+                </div>
+
+                <h3>
+                    Forest Cafe
+                </h3>
+
+                <p>
+                    숲을 바라보며 즐기는
+                    향긋한 커피 한 잔의 여유
+                </p>
+
+            </div>
+
+
+            <div class="program-item">
+
+                <div class="program-icon">
+                    ♨
+                </div>
+
+                <h3>
+                    Spa & Healing
+                </h3>
+
+                <p>
+                    따뜻한 물과 자연 속에서
+                    몸과 마음을 편안하게 쉬어보세요.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     EVENT
+========================= -->
+
+<section class="section"
+         id="event">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <span>EVENT</span>
+
+            <h2>
+                Forest Festa
+            </h2>
+
+        </div>
+
+
+        <div class="event-box">
+
+
+            <div class="event-image">
+
+                <svg viewBox="0 0 800 600"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <rect
+                        width="800"
+                        height="600"
+                        fill="#b4c5b4"
+                    />
+
+                    <circle
+                        cx="650"
+                        cy="120"
+                        r="90"
+                        fill="#eee9ce"
+                        opacity="0.8"
+                    />
+
+                    <path
+                        d="M0 450
+                           Q200 320 400 450
+                           T800 430
+                           V600
+                           H0Z"
+                        fill="#526c55"
+                    />
+
+                    <g fill="#2d4933">
+
+                        <path d="M80 600 L150 280 L220 600Z"/>
+                        <path d="M250 600 L330 230 L410 600Z"/>
+                        <path d="M500 600 L580 250 L660 600Z"/>
+                        <path d="M650 600 L730 300 L800 600Z"/>
+
+                    </g>
+
+                </svg>
+
+            </div>
+
+
+            <div class="event-content">
+
+                <span>
+                    SPECIAL EVENT
+                </span>
+
+                <h3>
+                    자연과 함께하는<br>
+                    특별한 하루
+                </h3>
+
+                <p>
+                    계절마다 새롭게 준비되는
+                    포레스트의 다양한 이벤트와
+                    프로그램을 만나보세요.
+                </p>
+
+                <a href="#" class="more">
+                    자세히 보기 →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     NEWS
+========================= -->
+
+<section class="section news"
+         id="news">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <span>NEWS</span>
+
+            <h2>
+                Forest News
+            </h2>
+
+        </div>
+
+
+        <div class="news-list">
+
+
+            <a href="#" class="news-item">
+
+                <span>
+                    포레스트 리조트 이용 안내
+                </span>
+
+                <span>
+                    2026.09.16
+                </span>
+
+            </a>
+
+
+            <a href="#" class="news-item">
+
+                <span>
+                    가을 시즌 특별 프로그램 안내
+                </span>
+
+                <span>
+                    2026.09.10
+                </span>
+
+            </a>
+
+
+            <a href="#" class="news-item">
+
+                <span>
+                    스파 & 사우나 이용요금 안내
+                </span>
+
+                <span>
+                    2026.09.05
+                </span>
+
+            </a>
+
+
+            <a href="#" class="news-item">
+
+                <span>
+                    객실 패키지 예약 안내
+                </span>
+
+                <span>
+                    2026.08.28
+                </span>
+
+            </a>
+
+
+            <a href="#" class="news-item">
+
+                <span>
+                    포레스트 리솜 새로운 프로그램 오픈
+                </span>
+
+                <span>
+                    2026.08.20
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     TOUR
+========================= -->
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="section-title">
+
+            <span>TRAVEL</span>
+
+            <h2>
+                Around Forest
+            </h2>
+
+            <p>
+                포레스트 주변에서 만나는 자연과 여행
+            </p>
+
+        </div>
+
+
+        <div class="tour-grid">
+
+
+            <!-- TOUR 1 -->
+
+            <div class="tour">
+
+                <svg viewBox="0 0 500 400"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <rect
+                        width="500"
+                        height="400"
+                        fill="#87a5a0"
+                    />
+
+                    <path
+                        d="M0 260
+                           Q100 180 200 250
+                           T400 230
+                           T500 250
+                           V400 H0Z"
+                        fill="#4c6e57"
+                    />
+
+                    <ellipse
+                        cx="250"
+                        cy="300"
+                        rx="180"
+                        ry="65"
+                        fill="#9bc4c1"
+                    />
+
+                    <circle
+                        cx="390"
+                        cy="80"
+                        r="50"
+                        fill="#e7dfb5"
+                    />
+
+                </svg>
+
+                <div class="tour-name">
+                    의림지
+                </div>
+
+            </div>
+
+
+
+            <!-- TOUR 2 -->
+
+            <div class="tour">
+
+                <svg viewBox="0 0 500 400"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <rect
+                        width="500"
+                        height="400"
+                        fill="#b8c6b2"
+                    />
+
+                    <path
+                        d="M0 330
+                           L130 120
+                           L260 330
+                           L370 100
+                           L500 330
+                           V400
+                           H0Z"
+                        fill="#526b55"
+                    />
+
+                    <path
+                        d="M0 340
+                           L150 210
+                           L260 340
+                           L390 180
+                           L500 340
+                           V400
+                           H0Z"
+                        fill="#344d3b"
+                    />
+
+                </svg>
+
+                <div class="tour-name">
+                    월악산
+                </div>
+
+            </div>
+
+
+
+            <!-- TOUR 3 -->
+
+            <div class="tour">
+
+                <svg viewBox="0 0 500 400"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <rect
+                        width="500"
+                        height="400"
+                        fill="#d0b795"
+                    />
+
+                    <path
+                        d="M0 300
+                           Q120 210 240 290
+                           T500 260
+                           V400
+                           H0Z"
+                        fill="#876d50"
+                    />
+
+                    <path
+                        d="M0 330
+                           Q120 260 250 320
+                           T500 300
+                           V400
+                           H0Z"
+                        fill="#5d6048"
+                    />
+
+                    <circle
+                        cx="100"
+                        cy="90"
+                        r="60"
+                        fill="#f3e5bb"
+                    />
+
+                </svg>
+
+                <div class="tour-name">
+                    박달재
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     MEMBERSHIP
+========================= -->
+
+<section class="membership">
+
+    <div class="membership-bg">
+
+
+        <svg viewBox="0 0 1600 700"
+             preserveAspectRatio="xMidYMid slice"
+             xmlns="http://www.w3.org/2000/svg">
+
+            <rect
+                width="1600"
+                height="700"
+                fill="#415847"
+            />
+
+            <g fill="#253b2c">
+
+                <path d="M0 700 L180 100 L360 700Z"/>
+                <path d="M250 700 L450 40 L650 700Z"/>
+                <path d="M500 700 L750 120 L1000 700Z"/>
+                <path d="M800 700 L1050 30 L1300 700Z"/>
+                <path d="M1100 700 L1350 100 L1600 700Z"/>
+
+            </g>
+
+        </svg>
+
+
+    </div>
+
+
+    <div class="membership-content">
+
+        <span>
+            MEMBERSHIP
+        </span>
+
+        <h2>
+            Forest Membership
+        </h2>
+
+        <p>
+            자연 속에서 누리는 특별한 휴식과
+            다양한 리조트 혜택을 만나보세요.<br>
+            숲과 바다, 스파와 액티비티까지
+            리솜의 다양한 콘텐츠를 경험할 수 있습니다.
+        </p>
+
+        <a href="#"
+           class="membership-btn">
+            회원 혜택 자세히 보기
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div class="footer-logo">
+            FOREST RESOM
+        </div>
+
+        <div class="footer-info">
+
+            포레스트 리조트<br>
+
+            충청북도 제천시 백운면 금봉로 365<br>
+
+            대표번호 : 043-649-6000
+            &nbsp;&nbsp;
+            예약문의 : 1600-0060
+            <br>
+
+            개인정보처리방침
+            &nbsp; | &nbsp;
+            이용약관
+            &nbsp; | &nbsp;
+            오시는 길
+
+        </div>
+
+        <div class="copyright">
+
+            COPYRIGHT © FOREST RESOM.
+            ALL RIGHTS RESERVED.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+/* =========================
+   HEADER SCROLL EFFECT
+========================= */
+
+const header =
+    document.getElementById("header");
+
+
+window.addEventListener("scroll", function() {
+
+    if(window.scrollY > 50) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+});
+
+
+</script>
+
+
+</body>
+</html>
+

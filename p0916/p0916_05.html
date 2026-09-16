@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{width: 200px; height: 200px; background: red; margin: 200px;
+            animation: r 2s infinite alternate, s 2s infinite alternate;}
+        @keyframes r{
+            from{transform: translate(0px)  rotate(0deg);}
+            to{transform: translate(500px) rotate(180deg) scale(2);}
+        }
+        @keyframes s{
+            from{background: red;}
+            50%{background: green;}
+            to{background: blue; border-radius: 50%;}
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

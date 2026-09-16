@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>현재잔액</h2>
+    <h2 id="money">2000000</h2>
+
+
+
+    <input type="text" name="num" id="num"><br>
+    <button type="button" onclick="btn()">확인</button> 
+    <!-- onclick는 함수 호출한다는 뜻 -->
+    <script>
+        //버튼을 누르면 id num input박스에 입력한 숫자
+        // var a=5;
+        // if(a>10){
+        //     alert("10보다 큰수 입니다.");
+        // }else{
+        //     document.write("10보다 작은 수 입니다");
+        // }
+
+        function btn(){ 
+            var money=document.getElementById("money").innerText
+            console.log("머니:"+money)
+
+
+        //     var num=Number(document.getElementById("num").value);//html전체 중 id가 num인것을 찾는다.
+        //     alert(num)
+        }
+    </script>
+</body>
+</html>

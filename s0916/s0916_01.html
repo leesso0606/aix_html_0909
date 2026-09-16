@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var name="유관순";//변수선언-예전버전
+        let name2="강감찬";//변수선언-최근버전
+        const name3="김구";//상수:처음값을 변경할 수 없음 ->파이썬의 튜플과 같은 개념
+        name4="김유신"
+        console.log("이름:"+name4)
+
+
+    /* 일반 script는 원하는 위치 아래에 있어야 실행됨
+        하지만 function 으로 뺄 경우 어느 위치에 있어도 상관없다. 한번 쭉 읽고 실행하기 때문에*/
+        function btn(){
+            alert("div:"+ document. getElementById("d01").innerText);
+        // document.getElementById("id").value="홍길동";
+
+        let kor =Number( document.getElementById("kor").value);
+        let eng=Number(document.getElementById("eng").value) ;//Number(), parseInt(),parseFloats()
+        let total=document.getElementById("total").value= kor+eng; //Number처리를 안했으면 none가 나왔음
+        }
+        
+        // 문자형: toString()
+    </script>
+    <!-- input는 value값이 있어서 가져올 수 있음. 
+        div 등 다른태그의 값은 innerText로 가져올 수 있음.-->
+        
+
+    <div id="d01">85</div>
+
+    <label>국어</label>
+    <input type="text" name="kor" id="kor" ><br>
+    <label>영어</label>
+    <input type="text" name="eng" id="eng" ><br>
+    <button type="button" onclick="btn()">저장</button>
+    <br>
+    <label>합계</label>
+    <input type="text" name="total" id="total" ><br>
+</body>
+</html>

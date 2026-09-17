@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2{text-align: center;}
+        table,th,td{border: 1px solid black; border-collapse: collapse;}
+        table{width: 1000px; text-align: center; box-sizing: border-box;
+        margin: 50px auto;}
+        th{background: #efefef; height: 60px;}
+        td{height: 40px;}
+    </style>
+</head>
+<body>
+    <table>
+        <h2>학생성적프로그램</h2>
+        <colgroup><!-- 비율정하기-->
+            <col width="10%">
+            <col width="20%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="15%">
+            <col width="15%">
+            <col width="10%">
+        </colgroup>
+
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>합계</th>
+                <th>평균</th>
+                <th>등수</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody">
+        </tbody>
+
+    </table>
+
+    
+    <script>
+        // 변수에 ``안에 태그 포함해서 넣고 innerHTML으로 출력한다.
+        // 10번을 일일히 작성하는 것과 같은 for문
+        let tbody=``;
+        for(let i=1;i<=10;i++){
+            tbody+=`<tr>
+                <td>${i}</td>
+                <td>홍길동</td>
+                <td>100</td>
+                <td>100</td>
+                <td>100</td>
+                <td>300</td>
+                <td>100</td>
+                <td>0</td>
+                </tr>`;
+        }
+
+
+        document.getElementById("tbody").innerHTML=tbody;
+        
+    </script>
+</body>
+</html>

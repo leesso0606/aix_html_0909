@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0; }
+        h3{width: 200px;height: 60px; border: 1px solid black;
+        text-align: center; line-height: 60px;
+        }
+        button{width: 200px; height: 30px;}
+    </style>
+</head>
+<body>
+        <h3>총점</h3>
+        <h3 id="total">100</h3>
+        <input type="text" name="kor" id="kor" placeholder="국어점수입력"><br>
+        <input type="text" name="eng" id="eng" placeholder="영어점수입력"><br>
+        <input type="text" name="math" id="math" placeholder="수학점수입력"><br>
+        <button type="button" onclick="btn()">저장</button>
+
+        <script>
+            //타입:str,int,float,boolen
+            //타입변경:Number(),parseInt(),parseFloat().toString()
+            //확인:console.log(), alert(), document.write(),confirm(),prompt()
+            //document.getElementById().value/innerText/innerHtml
+            //function 함수(){}:함수선언
+            function btn(){
+            var total=document.getElementById("total").innerText;
+            console.log("합계:"+total)
+            var kor=Number(document.getElementById("kor").value) ;
+            console.log("점수:"+kor)
+            var eng=Number(document.getElementById("eng").value) ;
+            console.log("점수:"+eng)
+            var math=Number(document.getElementById("math").value);
+            console.log("점수:"+math)
+            total=kor+eng+math;
+            alert(total)
+            document.getElementById("total").innerText=total
+            }
+
+
+
+        </script>
+
+
+
+
+</body>
+</html>

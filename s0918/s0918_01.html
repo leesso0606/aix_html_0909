@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{width: 300px; height: 200px; border: 1px solid black;
+        font-size: 30px; text-align: center;}
+    </style>
+</head>
+<body>
+    <h2>BTs콘서트 남은시간</h2>
+    <div id="screen">0</div>
+    <button type="button" onclick="getStop()">시간 종료</button>
+
+    <script>
+        function getStop(){
+            clearInterval(timer);
+        }
+        
+
+        function getClock(){
+            //객체선언
+            //파이썬은 date=Date()
+            var date=new Date();
+            // document.write(date);
+            var year=date.getFullYear() //년도
+            var month= date.getMonth() //월
+            var d= date.getDate() //일
+            var day= date.getDay() //요일
+            var hour= date.getHours() //시
+            var minute= date.getMinutes() //분
+            var second= date.getSeconds() //초
+            var today=`${year}년${month}월${d}일${hour}:${minute}:${second}`;
+            // document.write(today);
+            document.getElementById("screen").innerText=today;
+
+        }
+
+        //매 시간마다 자동 실행하는 함수
+        //setInterval(함수,초)-초->밀리세컨트: 1초마다 실행된다
+        var timer=setInterval(getClock,1000);
+
+
+
+
+
+
+
+
+        //타입:str,int,float,boolean
+        //형변환:Number().parseInt(),parseFloat(),toString()
+        //확인: console.log(),alert(),document.write(),confirm(),prompt()
+        //document->html전부 안에. ()와 같은 id를 찾아서. 출력 하라.
+        //위치:document.getElementById().value/innerText/innerHTML->value는 input 나머지는 innerText
+    </script>
+</body>
+</html>

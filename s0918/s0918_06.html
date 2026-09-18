@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d01{width: 100px; height: 100px; border: 1px solid black;}
+    </style>
+</head>
+<body>
+    <input type="text" name="kor" id="kor"><br>
+    <input type="text" name="eng" id="eng"><br>
+    <input type="text" name="math" id="math"><br>
+    <button type="button" onclick="saveBtn()">저장</button>
+    <div id="d01"></div>
+
+    <script>
+        function saveBtn(){
+            var kor= Number(document.getElementById("kor").value);
+            var eng= Number(document.getElementById("eng").value);
+            var math= Number(document.getElementById("math").value);
+            var total=kor+eng+math;
+            var avg=total/3;
+            document.getElementById("d01").innerText=total;
+        }//sverBtn()함수
+
+
+
+        //"1"==1:자바는 모양이 같아서 같다고 함
+        //"1"===1: 타입까지 같아야한다.
+
+        /*
+        1.document.getElementById("math"):HTML에서 id="math"인 요소를 찾습니다.
+        2.addEventListener("keydown", function(e){}:"math" 입력창에서 키보드를 누르면(keydown) 이 함수를 실행해라.
+        3.function(e):e는 이벤트 객체(event object),사용자가 어떤 키를 눌렀는지 등의 정보를 가지고 있음
+        4. 누른키가 enter이 맞는짖 확인하고 변환한 값과 변수를 이용하여 결과를 출력하라
+        */
+        document.getElementById("math").addEventListener("keydown",function(e){
+            if(e.key==="Enter"){
+                var kor= Number(document.getElementById("kor").value);
+                var eng= Number(document.getElementById("eng").value);
+                var math= Number(document.getElementById("math").value);
+                var total=kor+eng+math;
+                var avg=total/3;
+                console.log(e.key);
+                console.log(e.keyCode);
+                document.getElementById("d01").innerText=total;
+            }
+        })
+    </script>
+
+</body>
+</html>

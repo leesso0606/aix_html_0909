@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 제이쿼리 링크가 있어야 사용가능,또는 다운 -->
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <title>Document</title>
+    <script>
+       // document.getElementById("title").innerText="대학생성적";//원하는 위치보다 위에 있으니 출력이 안됨.
+        $(function(){
+            //제이쿼리 약식 선언-함수는 안에서 선언해야 사용할 수 있음
+            // document.getElementById("title")-> $("#title")
+            // value->val(). innerText->text(), innerHTML->html()로 변경됨
+            $("#title").text("대학생성적제이쿼리");
+        });
+        /*
+        $(document).ready(function(){
+            //제이쿼리 기본 선언-함수는 안에서 선언해야 사용할 수있음:문서를 다 읽고 나서 함수를 실행하라->어디에 있던 상관없음
+        });*/
+    </script>
+</head>
+<body>
+    <!-- 제이쿼리: 자바스크립트 라이브러리(함수 도서관) -->
+    <h2 id="title">학생성적 프로그램</h2>
+    <input type="text" name="kor" id="kor"><br>
+    <input type="text" name="eng" id="eng"><br>
+    <input type="text" name="math" id="math"><br>
+    <button type="button" onclick="saveBtn()">저장</button>
+    <div id="d01"></div>
+
+
+    
+    <!-- <button onclick="btn()">확인</button>
+    <button onclick="btn2()">확인</button> -->
+
+    <script>
+        
+        /*제이쿼리
+        function saveBtn(){
+            // var kor = document.getElementById("kor").value;
+            // console.log(kor);
+            var kor=$("#kor").val();//클래스의 경우 .(클래스명)으로 진행
+            console.log("kor:"+kor)
+        }*/
+
+
+// --------------------------------------------------------------------------
+        /*
+        function btn(){
+            console.log(this);//this:자기자신
+        }
+        var sum=0;//전역변수:여러함수에 쓰고 싶으면
+
+        function btn2(){
+            alert("sum:"+sum)
+        }
+
+        function btn(){
+            sum=0;
+            for(var i=1;i<=100;i++){
+                var a=10;//지역변수:이 함수에서만 사용하고 싶을 때
+                if(sum>100){
+                    break;
+                }
+                sum+=i;
+            }
+            alert("i:"+i+"합계:"+sum+"a:"+a)
+        }*/
+    </script>
+</body>
+</html>

@@ -4,10 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/notice_list.css">
+  <script>
+    var students=[];
+    $(function(){
+      // alert("test")
+      $.ajax({
+        url:"https://apis.data.go.kr/B551011/PhotoGalleryService1/galleryList1?serviceKey=KnTCBhLfVQImhXejY2OHPb6S1tZdrVP8cfI%2BqGKTqA%2FK40FYUtlUIZUY6dhizYKsBfKdT3OJNbjkR7X0btZFuQ%3D%3D&numOfRows=10&pageNo=1&MobileOS=ETC&MobileApp=AppTest&arrange=A&_type=json",
+        type:"get",
+        data:{},
+        dataType:"json",
+        success:function(data){
+            alert("성공")
+            console.log(data.response.body.items.item);
+            // 서버에서 데이터를 받아서 변수에 저장하여 간략하게 만듬
+            students=data.response.body.items.item;
+            let a=``;
+              for(let i=0;i<10;i++){
+                a+=`<tr>
+                <td>${students[i].galContentId}</td>
+                <td class="table-title">${students[i].galTitle}</td>
+                <td>${students[i].galCreatedtime}</td>
+                <td>${students[i].galPhotographer}</td>
+                <td><img style="width:100px;" src="${students[i].galWebImageUrl}"></td>
+                </tr>`;
+              }
+              // document.getElementById("tbody").innerHTML=a;
+              $("#tbody").html(a);
+  
+        },
+        error:function(){
+            alert("실패");
+        }
+    })
+    });
+  </script>
 </head>
 <body>
   <header>
@@ -64,17 +99,22 @@
 
     <table>
       <colgroup>
-        <col width="18%">
-        <col width="60%">
-        <col width="18%">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
       </colgroup>
+
       <tr>
         <th>No.</th>
         <th>제목</th>
-        <th>작성일</th>
+        <th>촬영일</th>
+        <th>작가</th>
+        <th>이미지</th>
       </tr>
       
-      <tbody id="a">
+      <tbody id="tbody">
       <!-- <tr>
         <td>1</td>
         <td class="table-title">카카오플러스 친구 오픈</td>
@@ -101,14 +141,16 @@
       <script>
         
         let a=``;
-        for(let i=1;i<=10;i++){
+        for(let i=0;i<10;i++){
           a+=`<tr>
-          <td>${i}</td>
-          <td class="table-title">카카오플러스 친구 오픈</td>
-          <td>2018-07-11</td>
+          <td>${students[i].galContentId}</td>
+          <td class="table-title">${students[i].galTitle}</td>
+          <td>2026-09-18</td>
+          <td>홍길동</td>
+          <td><img src=""></td>
           </tr>`;
         }
-        document.getElementById("a").innerHTML=a;
+        document.getElementById("tbody").innerHTML=a;
   
   
       </script>
